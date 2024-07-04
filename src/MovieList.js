@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {Button, Card, Col, Container, Row} from "react-bootstrap";
 
 const MovieList = () => {
 
@@ -7,7 +8,6 @@ const MovieList = () => {
     console.log(movies)
 
     const getMovieData = async (e) => {
-        e.preventDefault()
         try {
             const config = {
                 headers: {
@@ -25,18 +25,31 @@ const MovieList = () => {
             console.log(err.messages)
         }
     }
+
+    useEffect(() => {
+        getMovieData()
+    }, [])
     return (
-        <div>
-            <h1>{movies.length}</h1>
-            {movies.map(movie => (
-                <div>
-                    <h1>{movie.title}</h1>
-                    <h2>{movie.vote_average}</h2>
-                    <p>{movie.overview}</p>
-                </div>
-            ))}
-            <button onClick={getMovieData}>데이터 불러오기</button>
-        </div>
+        <Container className={"mt-5"}>
+            <h1>Movies</h1>
+            <Row>
+                {movies.map(movie => (
+                    <Col className={"mt-5, mb-5"}>
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img
+                                style={{ height: "400px" }}
+                                variant="top"
+                                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+                            <Card.Body>
+                                <Card.Title>{movie.title.slice(0, 20)}</Card.Title>
+                                <Card.Text style={{ height: "100px"}}>{movie.overview.slice(0, 80)}</Card.Text>
+                                <Button variant="primary">Go somewhere</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
+        </Container>
     );
 };
 

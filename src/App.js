@@ -4,7 +4,7 @@ import TvList from "./TvList";
 
 const App = () => {
   return (
-      <TvList/>
+      <MovieList/>
   )
 }
 

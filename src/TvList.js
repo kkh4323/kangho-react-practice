@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {Button, Card, Col, Container, Row} from "react-bootstrap";
 
 const TvList = () => {
 
@@ -27,18 +28,32 @@ const TvList = () => {
         }
     }
 
+    useEffect(() => {
+        getTvData()
+    }, [])
     return (
-        <div>
+        <Container className={"mt-5"}>
             <h1>TV</h1>
-            {tvs.map(tv => (
-                <div>
-                    <h1>{tv.name}</h1>
-                    <h2>{tv.vote_average}</h2>
-                    <p>{tv.overview}</p>
-                </div>
-            ))}
-            <button onClick={getTvData}>TV 데이터 불러오기</button>
-        </div>
+            <Row>
+                {tvs.map(tv => (
+                    <Col className={"mt-3"}>
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img
+                                variant="top"
+                                src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`}
+                                style={{ height: "400px"}}
+                            />
+                            <Card.Body>
+                                <Card.Title>{tv.name}</Card.Title>
+                                <Card.Text style={{ height: "80px"}}>{tv.overview === "" ? "Empty Overview" : tv.overview.slice(0, 80)}</Card.Text>
+                                <Button variant="primary">Go somewhere</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
+            {/*<button onClick={getTvData}>TV 데이터 불러오기</button>*/}
+        </Container>
     );
 };
 
