@@ -1,5 +1,5 @@
 import {createBrowserRouter} from "react-router-dom";
-import {Detail, MovieList, TvList} from "./components";
+import {Detail, MovieList, TvList} from "./pages";
 
 const router = createBrowserRouter([
     {

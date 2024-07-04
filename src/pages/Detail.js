@@ -7,13 +7,12 @@ const Detail = () => {
     const { id } = useParams()
 
     const { pathname } = useLocation()
-    console.log("###############", pathname)
 
     const location = pathname.includes('movie')
 
     const [detailData, setDetail] = useState({})
 
-    const getDetailData = async (e) => {
+    const getDetailData = async () => {
 
         try {
             const config = {

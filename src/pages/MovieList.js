@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Button, Card, Col, Container, Row} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Container, Row} from "react-bootstrap";
+import {CardComponent} from "../components";
 
 const MovieList = () => {
 
@@ -35,21 +35,13 @@ const MovieList = () => {
             <h1>Movies</h1>
             <Row>
                 {movies.map(movie => (
-                    <Col className={"mt-5, mb-5"}>
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img
-                                style={{ height: "400px" }}
-                                variant="top"
-                                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-                            <Card.Body>
-                                <Card.Title>{movie.title.slice(0, 20)}</Card.Title>
-                                <Card.Text style={{ height: "100px"}}>{movie.overview.slice(0, 80)}</Card.Text>
-                                <Link to={`/movie/${movie.id}`}>
-                                    <Button variant="primary">Go Detail</Button>
-                                </Link>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                    <CardComponent
+                        id={movie.id}
+                        title={movie.title}
+                        overview={movie.overview}
+                        img={movie.poster_path}
+                        category={"movie"}
+                    />
                 ))}
             </Row>
         </Container>
