@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 const MovieList = () => {
 
@@ -43,7 +44,9 @@ const MovieList = () => {
                             <Card.Body>
                                 <Card.Title>{movie.title.slice(0, 20)}</Card.Title>
                                 <Card.Text style={{ height: "100px"}}>{movie.overview.slice(0, 80)}</Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
+                                <Link to={`/movie/${movie.id}`}>
+                                    <Button variant="primary">Go Detail</Button>
+                                </Link>
                             </Card.Body>
                         </Card>
                     </Col>
