@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useLocation } from "react-router-dom"
 import axios from 'axios';
-import { Container, Button } from "react-bootstrap"
+import {Container, Button, Row, Col, Card, Image} from "react-bootstrap"
 
 const Detail = () => {
     const { id } = useParams()
@@ -37,11 +37,29 @@ const Detail = () => {
     }, [])
 
     return (
-        <Container className={"mt-5"}>
+        <Container className="mt-5">
             <Link to={-1}>
                 <Button variant="link">Back</Button>
             </Link>
-            <h1>{location ? detailData.title : detailData.name}</h1>
+            <Row className="my-4">
+                <Col md={4}>
+                    {/* eslint-disable-next-line react/jsx-no-undef */}
+                    <Image src={`https://image.tmdb.org/t/p/w500${detailData.poster_path}`} rounded fluid></Image>
+                </Col>
+                <Col md={8}>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>{location ? detailData.title : detailData.name}</Card.Title>
+                            <Card.Text>
+                                <strong>Release Date: </strong>{detailData.release_date}<br/>
+                                <strong>Rating: </strong>{detailData.vote_average}<br/>
+                                <strong>Overview: </strong>{detailData.overview}<br/>
+                            </Card.Text>
+                            <Button variant="primary">Add to Cart</Button>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
         </Container>
     );
 };

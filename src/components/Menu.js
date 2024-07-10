@@ -11,6 +11,7 @@ const Menu = () => {
                     <Nav className="me-auto">
                         <Nav.Link href="/">Movie</Nav.Link>
                         <Nav.Link href="/tv">TV</Nav.Link>
+                        <Nav.Link href="/blog">Blog</Nav.Link>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
